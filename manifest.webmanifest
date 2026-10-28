@@ -1,0 +1,16 @@
+{
+  "name": "ROOK \u2014 Always in your corner",
+  "short_name": "ROOK",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090b10",
+  "theme_color": "#090b10",
+  "icons": [
+    {
+      "src": "assets/rook-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
