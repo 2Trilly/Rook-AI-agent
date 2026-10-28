@@ -1,0 +1,17 @@
+{
+  "name": "ROOK \u2014 Always in your corner",
+  "short_name": "ROOK",
+  "description": "A local-first personal assistant.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090b0f",
+  "theme_color": "#0a0c10",
+  "icons": [
+    {
+      "src": "assets/rook-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

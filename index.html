@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0c10">
+  <meta name="description" content="ROOK — your personal assistant, always in your corner.">
+  <title>ROOK — Always in your corner</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/rook-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="assets/rook-mark.svg" alt="" class="brand-mark">
+        <div><div class="brand-name">ROOK</div><div class="brand-tag">ALWAYS IN YOUR CORNER</div></div>
+      </div>
+      <button class="new-chat" id="newChat">＋ <span>New conversation</span></button>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="chat"><span>◈</span> Chat</button>
+        <button class="nav-item" data-view="research"><span>⌕</span> Live research</button>
+        <button class="nav-item" data-view="memory"><span>◇</span> Memory</button>
+        <button class="nav-item" data-view="notes"><span>▤</span> Notes</button>
+        <button class="nav-item" data-view="shortcuts"><span>↗</span> iPhone actions</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="status-dot"></div><span id="modeLabel">Local mode · no API required</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="topbar-title" id="topbarTitle">Chat</div>
+        <div class="topbar-right"><span class="privacy-pill"><span class="privacy-dot"></span> Your data stays here</span></div>
+      </header>
+
+      <section class="view active" id="view-chat">
+        <div class="chat-layout">
+          <div class="chat-scroll" id="chatScroll">
+            <div class="welcome" id="welcome">
+              <div class="rook-emblem"><img src="assets/rook-mark.svg" alt="ROOK"></div>
+              <div class="eyebrow">YOUR PERSONAL ASSISTANT</div>
+              <h1>What's on your mind?</h1>
+              <p>I'm ROOK. I can help you think things through, plan your next move, find a direction, or turn a messy idea into a real plan.</p>
+              <div class="starter-grid">
+                <button class="starter" data-prompt="Give me three music recommendations for the mood I'm in. Ask what mood if you need to."><span>♫</span><b>Find my next song</b><small>Music for a mood or moment</small></button>
+                <button class="starter" data-prompt="Help me put together an outfit. Ask about weather, occasion, budget, and pieces I own if needed."><span>◈</span><b>Build a fit</b><small>Style ideas that fit my budget</small></button>
+                <button class="starter" data-prompt="Help me research something and tell me what needs to be verified with current sources."><span>⌕</span><b>Research something</b><small>Compare options and sources</small></button>
+                <button class="starter" data-prompt="Help me turn a big goal into a realistic plan with clear next steps."><span>↗</span><b>Make a game plan</b><small>Break it into doable steps</small></button>
+              </div>
+              <div class="local-note"><span>✦</span> Local mode is ready immediately. For a real AI conversation, connect your own compatible provider in Settings.</div>
+            </div>
+            <div class="messages" id="messages" aria-live="polite"></div>
+          </div>
+          <div class="composer-wrap">
+            <form class="composer" id="chatForm">
+              <textarea id="messageInput" rows="1" placeholder="Message ROOK…" aria-label="Message ROOK"></textarea>
+              <div class="composer-bottom"><span class="composer-hint">Enter to send · Shift+Enter for a new line</span><button class="send-button" type="submit" aria-label="Send message">↑</button></div>
+            </form>
+            <p class="fine-print">ROOK can make mistakes. Verify important information. Live results open in your browser.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-research">
+        <div class="page-content">
+          <div class="eyebrow">LOOK IT UP</div><h1>Live research</h1>
+          <p class="page-lead">Search the web from your browser. ROOK doesn't invent prices or pretend it checked a page it hasn't opened.</p>
+          <form id="researchForm" class="search-card"><label for="researchQuery">What are we looking for?</label><div class="search-line"><input id="researchQuery" placeholder="e.g. best budget camera for night photos" required><button class="primary-button">Search</button></div>
+            <div class="search-options"><label><input type="radio" name="searchEngine" value="google" checked> Google</label><label><input type="radio" name="searchEngine" value="bing"> Bing</label><label><input type="radio" name="searchEngine" value="youtube"> YouTube</label><label><input type="radio" name="searchEngine" value="reddit"> Reddit</label></div></form>
+          <div class="quick-grid">
+            <button class="quick-card" data-research="music recommendations new releases"><span>♫</span><b>Music</b><small>New sounds and recommendations</small></button>
+            <button class="quick-card" data-research="best streetwear deals official retailer"><span>◈</span><b>Fashion deals</b><small>Compare real listings</small></button>
+            <button class="quick-card" data-research="best price current reviews"><span>⌕</span><b>Price check</b><small>Check multiple sellers</small></button>
+            <button class="quick-card" data-research="site:reddit.com reviews experiences"><span>◎</span><b>Community takes</b><small>Real-world opinions, with caution</small></button>
+          </div>
+          <div class="info-card"><b>How live research works</b><p>This free build opens your chosen search engine. It does not scrape sites or claim a deal is verified. Open results and check seller, date, shipping, and return policy before buying.</p></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-memory">
+        <div class="page-content">
+          <div class="eyebrow">YOUR CALL</div><h1>Memory</h1>
+          <p class="page-lead">Save details you want ROOK to reuse. These stay in this browser on this device. Nothing syncs to a server in local mode.</p>
+          <form id="memoryForm" class="search-card"><label for="memoryInput">Add a memory</label><textarea id="memoryInput" rows="3" placeholder="e.g. I prefer recommendations under $40." required></textarea><div class="form-footer"><span class="muted">Don't save passwords or sensitive information.</span><button class="primary-button">Save memory</button></div></form>
+          <div class="section-heading"><h2>Saved memories</h2><button class="text-button" id="exportData">Export my data</button></div>
+          <div id="memoryList" class="item-list"></div>
+          <div class="danger-zone"><b>Want a clean slate?</b><p>Delete individual memories above or clear all ROOK data in Settings.</p></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-notes">
+        <div class="page-content">
+          <div class="eyebrow">GET IT OUT OF YOUR HEAD</div><h1>Notes</h1><p class="page-lead">Quick thoughts, plans, and ideas stored locally on this device.</p>
+          <form id="noteForm" class="search-card"><label for="noteTitle">Title</label><input id="noteTitle" placeholder="A quick idea" maxlength="100"><label for="noteBody" class="field-label">Note</label><textarea id="noteBody" rows="4" placeholder="Write it down…" required></textarea><div class="form-footer"><span class="muted">Saved in this browser</span><button class="primary-button">Save note</button></div></form>
+          <div class="section-heading"><h2>Your notes</h2><span id="noteCount" class="muted"></span></div><div id="noteList" class="item-list"></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-shortcuts">
+        <div class="page-content">
+          <div class="eyebrow">IPHONE TOOLKIT</div><h1>iPhone actions</h1><p class="page-lead">ROOK can open supported Apple apps and shortcut links. iOS controls what apps can do; this is not unrestricted phone control.</p>
+          <div class="action-grid">
+            <a class="action-card" href="shortcuts://"><span>↗</span><b>Open Shortcuts</b><small>Create or run a shortcut</small></a>
+            <a class="action-card" href="mobilenotes://"><span>▤</span><b>Open Notes</b><small>Write something down</small></a>
+            <a class="action-card" href="calshow://"><span>▦</span><b>Open Calendar</b><small>Check your schedule</small></a>
+            <a class="action-card" href="maps://"><span>⌖</span><b>Open Maps</b><small>Start a route or search</small></a>
+            <a class="action-card" href="music://"><span>♫</span><b>Open Music</b><small>Jump into your library</small></a>
+            <a class="action-card" href="sms:"><span>✉</span><b>Open Messages</b><small>Compose manually; nothing sends automatically</small></a>
+          </div>
+          <div class="info-card"><b>Make it genuinely useful</b><p>In Apple Shortcuts, create a shortcut for a task you repeat, then use its Share Link and add it in Settings. ROOK will show your shortcut as a button. Review the shortcut before running it, especially if it sends messages, shares location, or changes data.</p><a class="inline-link" href="https://support.apple.com/guide/shortcuts/welcome/ios" target="_blank" rel="noopener noreferrer">Apple Shortcuts guide ↗</a></div>
+          <form class="search-card" id="shortcutForm"><label for="shortcutName">Add your shortcut</label><input id="shortcutName" placeholder="e.g. Start my school routine" required maxlength="70"><label class="field-label" for="shortcutUrl">Shortcut link</label><input id="shortcutUrl" type="url" placeholder="https://www.icloud.com/shortcuts/…" required><div class="form-footer"><span class="muted">Only add links you trust.</span><button class="primary-button">Add button</button></div></form>
+          <div id="shortcutList" class="item-list"></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-settings">
+        <div class="page-content">
+          <div class="eyebrow">YOUR ROOK, YOUR RULES</div><h1>Settings</h1><p class="page-lead">Local mode works with no account or API key. You can connect a compatible AI endpoint if you choose, but it is optional.</p>
+          <div class="settings-card"><div class="setting-title"><div><b>AI provider</b><p>Optional · requires a provider that accepts chat-completions-style requests.</p></div><span class="tag">OPTIONAL</span></div>
+            <label for="providerUrl">Endpoint URL</label><input id="providerUrl" type="url" placeholder="https://your-compatible-endpoint/v1/chat/completions">
+            <label for="providerModel" class="field-label">Model name</label><input id="providerModel" placeholder="model-name">
+            <label for="providerKey" class="field-label">API key (stored in this browser)</label><input id="providerKey" type="password" autocomplete="off" placeholder="Leave blank for no provider">
+            <div class="warning-box">Security + cost warning: a key saved here is accessible to anyone who can use this browser profile or inspect its storage. Do not use a valuable or paid key. A provider may charge based on its own terms. ROOK does not bill you, and cannot guarantee another service stays free.</div>
+            <div class="form-footer"><span id="providerStatus" class="muted">Local mode active</span><button class="primary-button" type="button" id="saveProvider">Save provider</button></div>
+            <button class="text-button" id="removeProvider">Remove provider and key</button>
+          </div>
+          <div class="settings-card"><div class="setting-title"><div><b>Assistant personality</b><p>Set the tone ROOK uses when an AI provider is connected.</p></div></div><textarea id="personality" rows="3" placeholder="Calm, clever, direct, trustworthy…"></textarea><button class="primary-button" id="savePersonality">Save personality</button></div>
+          <div class="settings-card"><div class="setting-title"><div><b>Data controls</b><p>Export a backup or clear local data from this browser.</p></div></div><div class="button-row"><button class="secondary-button" id="settingsExport">Export data</button><label class="secondary-button file-label">Import backup<input type="file" id="importFile" accept="application/json"></label></div><button class="danger-button" id="clearData">Clear all local ROOK data</button></div>
+          <div class="info-card"><b>What this build can and cannot do</b><ul><li>Works as a local-first PWA with memory, notes, shortcut links, and browser searches.</li><li>AI responses require a compatible provider and your own configuration.</li><li>Live research opens a search engine; prices and product details must be checked at the source.</li><li>iOS limits app-to-app actions. This app cannot silently control every app or send messages on your behalf.</li></ul></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
